@@ -15,6 +15,20 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
 Only the `VITE_` variables are exposed to the browser. Keep the service-role key private and use it only for seeding.
 
+## Supabase Auth URLs
+
+In Supabase Dashboard → Authentication → URL Configuration:
+
+- Set **Site URL** to your deployed app URL, for example `https://your-site.netlify.app`.
+- Add redirect URLs for local and production:
+
+```text
+http://localhost:5173/**
+https://your-site.netlify.app/**
+```
+
+ExamForge also sends `emailRedirectTo` during signup and password reset using the current app origin, so confirmation links created from Netlify go back to Netlify instead of localhost.
+
 ## Database
 
 Run the migration in Supabase SQL Editor or with the Supabase CLI:

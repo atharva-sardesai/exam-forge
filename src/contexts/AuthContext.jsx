@@ -7,6 +7,10 @@ const AuthContext = createContext(null)
 
 const avatarColors = ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#14b8a6']
 
+function appUrl(path = '/') {
+  return `${window.location.origin}${path}`
+}
+
 function mapAuthError(message = '') {
   const lower = message.toLowerCase()
   if (lower.includes('email not confirmed')) return 'Email not confirmed yet. Check your inbox for the confirmation link.'
@@ -80,7 +84,10 @@ export function AuthProvider({ children }) {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { display_name: displayName } },
+      options: {
+        data: { display_name: displayName },
+        emailRedirectTo: appUrl('/login'),
+      },
     })
     if (error) throw new Error(mapAuthError(error.message))
     if (data.user) {
@@ -119,7 +126,7 @@ export function AuthProvider({ children }) {
   const resetPassword = useCallback(async (email) => {
     if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/forgot-password`,
+      redirectTo: appUrl('/forgot-password'),
     })
     if (error) throw new Error(mapAuthError(error.message))
   }, [])
