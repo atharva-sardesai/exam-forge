@@ -9,11 +9,11 @@ ExamForge is a Vite/React exam simulator backed by Supabase Auth, Postgres, RLS,
 
 ```bash
 VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your-key
+SUPABASE_SECRET_KEY=sb_secret_your-key
 ```
 
-Only the `VITE_` variables are exposed to the browser. Keep the service-role key private and use it only for seeding.
+Only the `VITE_` variables are exposed to the browser. Keep the secret key private and use it only for seeding.
 
 ## Supabase Auth URLs
 
@@ -60,7 +60,7 @@ After migrations, seed the preloaded exams and reference notes:
 
 ```bash
 SUPABASE_URL=https://your-project.supabase.co \
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key \
+SUPABASE_SECRET_KEY=sb_secret_your-key \
 npm run db:seed
 ```
 

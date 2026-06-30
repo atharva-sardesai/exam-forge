@@ -10,14 +10,14 @@ if (existsSync('.env')) {
 }
 
 const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+const secretKey = process.env.SUPABASE_SECRET_KEY
 
-if (!url || !serviceRoleKey) {
-  console.error('Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY before running the seed script.')
+if (!url || !secretKey) {
+  console.error('Set SUPABASE_URL and SUPABASE_SECRET_KEY before running the seed script.')
   process.exit(1)
 }
 
-const supabase = createClient(url, serviceRoleKey, { auth: { persistSession: false } })
+const supabase = createClient(url, secretKey, { auth: { persistSession: false } })
 
 const providerFor = (name) => {
   if (name.includes('AWS')) return 'AWS'

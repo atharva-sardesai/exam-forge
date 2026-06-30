@@ -80,7 +80,7 @@ export function AuthProvider({ children }) {
   }, [hydrate])
 
   const signUp = useCallback(async ({ displayName, email, password }) => {
-    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.')
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -107,7 +107,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const signIn = useCallback(async ({ email, password }) => {
-    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.')
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) throw new Error(mapAuthError(error.message))
     if (data.user) {
@@ -124,7 +124,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const resetPassword = useCallback(async (email) => {
-    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+    if (!supabase) throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY.')
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: appUrl('/forgot-password'),
     })

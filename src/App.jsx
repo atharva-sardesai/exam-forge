@@ -280,7 +280,7 @@ function Dashboard() {
 }
 
 function SetupWarning() {
-  return <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-100">Supabase is not configured. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to `.env` to use the server-backed app.</div>
+  return <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-4 text-sm text-amber-100">Supabase is not configured. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` to `.env` to use the server-backed app.</div>
 }
 
 function Metric({ label, value }) {
